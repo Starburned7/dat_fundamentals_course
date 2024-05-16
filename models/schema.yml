@@ -40,3 +40,17 @@ models:
           - relationships:
               to: ref('stg_customers')
               field: customer_id
+
+  - name: stg_orders_incremental
+    description: This model cleans up order data
+    columns:
+      - name: order_id
+        description: Primary key
+        tests:
+          - unique
+          - not_null
+      - name: status
+        description: '{{ doc("order_status") }}' 
+      - name: customer_id
+        tests:
+          - not_null
